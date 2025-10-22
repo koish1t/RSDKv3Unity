@@ -4,4 +4,4 @@
 
  Rendering is kinda wonky but I don't care enough to fix it rn. If you wanna fork it and fix it go ahead. (Make a PR after please, it'd be awesome sauce if you did!)
 
- Just open SampleScene.unity and run it, it'll automatically work since I included the Data.rsdk file.
+ Make sure you have "0"341-SonicCD-1.0.0.0.xap" in this directory and then run setup.py (you'll need ffmpeg from [here](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.0))
