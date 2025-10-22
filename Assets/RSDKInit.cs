@@ -64,8 +64,7 @@ public class RSDKInit : MonoBehaviour
 		Camera mainCamera = Camera.main;
 		if (mainCamera != null)
 		{
-			mainCamera.clearFlags = CameraClearFlags.SolidColor;
-			mainCamera.backgroundColor = Color.black;
+			mainCamera.enabled = false;
 		}
 	}
 	

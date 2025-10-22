@@ -93,7 +93,7 @@ namespace Retro_Engine
         
         if (renderMaterial == null)
         {
-          renderMaterial = new Material(Shader.Find("Sprites/Default"));
+          renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
         }
       }
 
