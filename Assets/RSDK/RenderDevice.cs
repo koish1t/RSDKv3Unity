@@ -23,7 +23,7 @@ namespace Retro_Engine
         GraphicsSystem.SetupPolygonLists();
         GraphicsSystem.InitializeRenderTexture();
         
-        renderMaterial = new Material(Shader.Find("Sprites/Default"));
+        renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
         
         for (int index = 0; index < 6; ++index)
         {
@@ -124,9 +124,11 @@ namespace Retro_Engine
           return;
         }
         
-        Debug.Log($"FlipScreen: gfxVertexSize={GraphicsSystem.gfxVertexSize}, texPaletteNum={GraphicsSystem.texPaletteNum}");
+        //Debug.Log($"FlipScreen: gfxVertexSize={GraphicsSystem.gfxVertexSize}, texPaletteNum={GraphicsSystem.texPaletteNum}");
         
         RenderTexture.active = GraphicsSystem.renderTexture;
+        
+        GL.Clear(true, true, Color.black);
         
         if (renderMaterial != null && gfxTexture[GraphicsSystem.texPaletteNum] != null)
         {
@@ -155,11 +157,11 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxVertexSize == 0)
         {
-          Debug.Log("RenderGameVertices: No vertices to render");
+          //Debug.Log("RenderGameVertices: No vertices to render");
           return;
         }
           
-        Debug.Log($"RenderGameVertices: Rendering {GraphicsSystem.gfxVertexSize} vertices");
+       //Debug.Log($"RenderGameVertices: Rendering {GraphicsSystem.gfxVertexSize} vertices");
         
         float screenWidth = 1280f;
         float screenHeight = 720f;

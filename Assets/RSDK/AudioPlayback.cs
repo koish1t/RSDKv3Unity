@@ -10,6 +10,7 @@ namespace Retro_Engine
       private static AudioSource musicAudioSource;
       private static AudioSource[] sfxAudioSources = new AudioSource[8];
       private static string currentTrack;
+      private static MonoBehaviour coroutineRunner;
       public const int MUSIC_STOPPED = 0;
       public const int MUSIC_PLAYING = 1;
       public const int MUSIC_PAUSED = 2;
@@ -39,6 +40,8 @@ namespace Retro_Engine
         GameObject audioObject = new GameObject("AudioPlayback");
         musicAudioSource = audioObject.AddComponent<AudioSource>();
         musicAudioSource.loop = false;
+        
+        coroutineRunner = audioObject.AddComponent<AudioPlaybackCoroutineRunner>();
         
         for (int i = 0; i < 8; i++)
         {
@@ -214,14 +217,45 @@ namespace Retro_Engine
             string musicPath;
             if (text.StartsWith("Music/"))
             {
-              musicPath = System.IO.Path.Combine("Assets/StreamingAssets", text);
+              musicPath = System.IO.Path.Combine(Application.streamingAssetsPath, text);
             }
             else
             {
-              musicPath = System.IO.Path.Combine("Assets/StreamingAssets", "Music", text);
+              musicPath = System.IO.Path.Combine(Application.streamingAssetsPath, "Music", text);
             }
             
-            AudioClip clip = Resources.Load<AudioClip>(musicPath);
+            if (!musicPath.EndsWith(".mp3"))
+            {
+              musicPath += ".mp3";
+            }
+            
+            if (System.IO.File.Exists(musicPath))
+            {
+              coroutineRunner.StartCoroutine(LoadMusicFile(musicPath, trackNo));
+            }
+            else
+            {
+              Debug.LogWarning($"Music file not found: {musicPath}");
+              AudioPlayback.musicStatus = 0;
+            }
+          }
+          catch (System.Exception ex)
+          {
+            Debug.LogError($"Error loading music: {ex.Message}");
+            AudioPlayback.musicStatus = 0;
+          }
+        }
+      }
+      
+      private static System.Collections.IEnumerator LoadMusicFile(string filePath, int trackNo)
+      {
+        using (UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequestMultimedia.GetAudioClip(filePath, AudioType.MPEG))
+        {
+          yield return www.SendWebRequest();
+          
+          if (www.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+          {
+            AudioClip clip = UnityEngine.Networking.DownloadHandlerAudioClip.GetContent(www);
             if (clip != null)
             {
               musicAudioSource.clip = clip;
@@ -229,7 +263,7 @@ namespace Retro_Engine
               musicAudioSource.volume = AudioPlayback.musicVolumeSetting;
               musicAudioSource.Play();
               
-              currentTrack = text;
+              currentTrack = System.IO.Path.GetFileNameWithoutExtension(filePath);
               AudioPlayback.currentMusicTrack = trackNo;
               AudioPlayback.musicVolume = 100;
               AudioPlayback.musicStatus = 1;
@@ -239,8 +273,9 @@ namespace Retro_Engine
               AudioPlayback.musicStatus = 0;
             }
           }
-          catch
+          else
           {
+            Debug.LogError($"Failed to load music file: {www.error}");
             AudioPlayback.musicStatus = 0;
           }
         }
@@ -411,5 +446,9 @@ namespace Retro_Engine
           }
         }
       }
+    }
+    
+    public class AudioPlaybackCoroutineRunner : MonoBehaviour
+    {
     }
 }
