@@ -62,7 +62,7 @@ namespace Retro_Engine
 
       public static void SetScreenRenderSize(int gfxWidth, int gfxPitch)
       {
-        GlobalAppDefinitions.SCREEN_XSIZE = 1280;
+        GlobalAppDefinitions.SCREEN_XSIZE = gfxWidth;
         GlobalAppDefinitions.SCREEN_CENTER = GlobalAppDefinitions.SCREEN_XSIZE / 2;
         GlobalAppDefinitions.SCREEN_SCROLL_LEFT = GlobalAppDefinitions.SCREEN_CENTER - 8;
         GlobalAppDefinitions.SCREEN_SCROLL_RIGHT = GlobalAppDefinitions.SCREEN_CENTER + 8;
@@ -714,7 +714,7 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = 1280.0f;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.tilePalette[(int) clearColour].red;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.tilePalette[(int) clearColour].green;
@@ -724,7 +724,7 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = 0.0f;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 720.0f;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 3840f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.tilePalette[(int) clearColour].red;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.tilePalette[(int) clearColour].green;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = GraphicsSystem.tilePalette[(int) clearColour].blue;
@@ -732,8 +732,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = 1280.0f;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 720.0f;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 3840f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.tilePalette[(int) clearColour].red;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.tilePalette[(int) clearColour].green;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = GraphicsSystem.tilePalette[(int) clearColour].blue;

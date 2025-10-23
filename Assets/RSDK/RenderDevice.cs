@@ -17,8 +17,11 @@ namespace Retro_Engine
       public static int bufferHeight;
       public static int highResMode = 0;
       public static bool useFBTexture = true;
+      private static Matrix4x4 projection2D;
+      private static Matrix4x4 projection3D;
+      private static Rect screenRect;
 
-      public static void InitRenderDevice()
+        public static void InitRenderDevice()
       {
         GraphicsSystem.SetupPolygonLists();
         GraphicsSystem.InitializeRenderTexture();
@@ -108,12 +111,28 @@ namespace Retro_Engine
         InputSystem.touchHeight = height;
         RenderDevice.viewWidth = InputSystem.touchWidth;
         RenderDevice.viewHeight = InputSystem.touchHeight;
-        RenderDevice.bufferWidth = 1280;
-        RenderDevice.bufferHeight = 720;
-        RenderDevice.viewAspect = (float)width / (float)height;
+        RenderDevice.bufferWidth = (int) ((float) RenderDevice.viewWidth / (float) RenderDevice.viewHeight * 240f);
+        RenderDevice.bufferWidth += 8;
+        RenderDevice.bufferWidth = RenderDevice.bufferWidth >> 4 << 4;
+        if (RenderDevice.bufferWidth > 400)
+          RenderDevice.bufferWidth = 400;
+        RenderDevice.viewAspect = 0.75f;
         GlobalAppDefinitions.HQ3DFloorEnabled = RenderDevice.viewHeight >= 480;
-        GraphicsSystem.SetScreenRenderSize(RenderDevice.bufferWidth, RenderDevice.bufferWidth);
-        RenderDevice.orthWidth = GlobalAppDefinitions.SCREEN_XSIZE;
+        if (RenderDevice.viewHeight >= 480)
+        {
+          GraphicsSystem.SetScreenRenderSize(RenderDevice.bufferWidth, RenderDevice.bufferWidth);
+          RenderDevice.bufferWidth *= 2;
+          RenderDevice.bufferHeight = 480;
+        }
+        else
+        {
+          RenderDevice.bufferHeight = 240 /*0xF0*/;
+          GraphicsSystem.SetScreenRenderSize(RenderDevice.bufferWidth, RenderDevice.bufferWidth);
+        }
+        RenderDevice.orthWidth = GlobalAppDefinitions.SCREEN_XSIZE * 16 /*0x10*/;
+        RenderDevice.projection2D = Matrix4x4.Ortho(4f, (float)(RenderDevice.orthWidth + 4), 3844f, 4f, 0.0f, 100f);
+        RenderDevice.projection3D = Matrix4x4.Perspective(1.83259571f * Mathf.Rad2Deg, RenderDevice.viewAspect, 0.1f, 2000f) * Matrix4x4.Scale(new Vector3(1f, -1f, 1f)) * Matrix4x4.Translate(new Vector3(0.0f, -0.045f, 0.0f));
+        RenderDevice.screenRect = new Rect(0f, 0f, RenderDevice.viewWidth, RenderDevice.viewHeight);
       }
 
       public static void FlipScreen()

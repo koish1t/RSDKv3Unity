@@ -50,22 +50,15 @@ public class RSDKInit : MonoBehaviour
 				cameraObj.transform.SetParent(transform);
 				renderCamera = cameraObj.AddComponent<Camera>();
 				renderCamera.orthographic = true;
-				renderCamera.orthographicSize = 120f;
-				renderCamera.nearClipPlane = 0.1f;
-				renderCamera.farClipPlane = 1000f;
-				renderCamera.clearFlags = CameraClearFlags.SolidColor;
+                Matrix4x4 offCenterProjection = Matrix4x4.Ortho(4f, (float)(RenderDevice.orthWidth + 4), 3844f, 4f, 0.0f, 100f);
+                renderCamera.projectionMatrix = offCenterProjection;
+                renderCamera.clearFlags = CameraClearFlags.SolidColor;
 				renderCamera.backgroundColor = Color.black;
 			}
 		}
 		
 		GraphicsSystem.renderTexture = renderTexture;
 		GraphicsSystem.renderCamera = renderCamera;
-		
-		Camera mainCamera = Camera.main;
-		if (mainCamera != null)
-		{
-			mainCamera.enabled = false;
-		}
 	}
 	
 	void OnGUI()
