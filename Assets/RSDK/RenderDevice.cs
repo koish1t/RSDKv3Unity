@@ -30,7 +30,7 @@ namespace Retro_Engine
         
         for (int index = 0; index < 6; ++index)
         {
-          gfxTexture[index] = new Texture2D(1024, 1024, TextureFormat.RGBA4444, false);
+          gfxTexture[index] = new Texture2D(1024, 1024, TextureFormat.RGBA32, false);
           gfxTexture[index].filterMode = FilterMode.Point;
         }
         
@@ -182,8 +182,8 @@ namespace Retro_Engine
           
        //Debug.Log($"RenderGameVertices: Rendering {GraphicsSystem.gfxVertexSize} vertices");
         
-        float screenWidth = 1280f;
-        float screenHeight = 720f;
+        float screenWidth = RenderDevice.viewWidth;
+        float screenHeight = RenderDevice.viewWidth;
         
         GL.Begin(GL.QUADS);
         
