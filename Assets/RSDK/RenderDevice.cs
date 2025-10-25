@@ -183,7 +183,7 @@ namespace Retro_Engine
        //Debug.Log($"RenderGameVertices: Rendering {GraphicsSystem.gfxVertexSize} vertices");
         
         float screenWidth = RenderDevice.viewWidth;
-        float screenHeight = RenderDevice.viewWidth;
+        float screenHeight = RenderDevice.viewHeight;
         
         GL.Begin(GL.QUADS);
         
