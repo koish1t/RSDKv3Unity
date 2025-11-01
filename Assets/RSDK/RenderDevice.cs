@@ -24,15 +24,15 @@ namespace Retro_Engine
         public static void InitRenderDevice()
       {
         GraphicsSystem.SetupPolygonLists();
-        GraphicsSystem.InitializeRenderTexture();
-        
-        renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
         
         for (int index = 0; index < 6; ++index)
         {
           gfxTexture[index] = new Texture2D(1024, 1024, TextureFormat.RGBA32, false);
           gfxTexture[index].filterMode = FilterMode.Point;
         }
+        GraphicsSystem.InitializeRenderTexture();
+        
+        renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
         
         CreateRenderMesh();
       }
