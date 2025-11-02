@@ -93,7 +93,7 @@ namespace Retro_Engine
         
         if (renderMaterial == null)
         {
-          renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
+          renderMaterial = new Material(Shader.Find("Custom/RSDK_RT"));
         }
       }
 
@@ -714,7 +714,7 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE );
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.tilePalette[(int) clearColour].red;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.tilePalette[(int) clearColour].green;
@@ -732,7 +732,7 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE );
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (GlobalAppDefinitions.SCREEN_XSIZE << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = 3840f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.tilePalette[(int) clearColour].red;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.tilePalette[(int) clearColour].green;
@@ -755,8 +755,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/ || xPos <= -100 || xPos >= 1380 || yPos <= -100 || yPos >= 820)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -764,8 +764,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize)<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -773,8 +773,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize)<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize)<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -782,8 +782,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize)<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -809,8 +809,8 @@ namespace Retro_Engine
         switch (direction)
         {
           case 0:
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -818,8 +818,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -827,8 +827,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -847,8 +847,8 @@ namespace Retro_Engine
             ++GraphicsSystem.gfxVertexSize;
             break;
           case 1:
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -856,8 +856,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -865,8 +865,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -885,8 +885,8 @@ namespace Retro_Engine
             ++GraphicsSystem.gfxVertexSize;
             break;
           case 2:
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -894,8 +894,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -903,8 +903,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -923,8 +923,8 @@ namespace Retro_Engine
             ++GraphicsSystem.gfxVertexSize;
             break;
           case 3:
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -932,8 +932,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -941,8 +941,8 @@ namespace Retro_Engine
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
             ++GraphicsSystem.gfxVertexSize;
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos);
-            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+            GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
             GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -975,8 +975,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/ || xPos <= -100 || xPos >= 1380 || yPos <= -100 || yPos >= 820)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -984,8 +984,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize)<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -993,8 +993,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize)<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize)<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1002,8 +1002,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize)<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1026,8 +1026,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/ || xPos <= -100 || xPos >= 1380 || yPos <= -100 || yPos >= 820)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1035,8 +1035,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1044,8 +1044,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1053,8 +1053,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1077,8 +1077,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/ || xPos <= -100 || xPos >= 1380 || yPos <= -100 || yPos >= 820)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1086,8 +1086,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1095,8 +1095,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1104,8 +1104,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1128,8 +1128,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/ || xPos <= -100 || xPos >= 1380 || yPos <= -100 || yPos >= 820)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1137,8 +1137,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1146,8 +1146,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1155,8 +1155,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin + ySize) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1181,8 +1181,8 @@ namespace Retro_Engine
           alpha = (int) byte.MaxValue;
         if (GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = (byte) r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = (byte) g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = (byte) b;
@@ -1190,8 +1190,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.0f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.0f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xSize);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xSize) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = (byte) r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = (byte) g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = (byte) b;
@@ -1199,8 +1199,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.01f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + ySize);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + ySize) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = (byte) r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = (byte) g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = (byte) b;
@@ -1276,8 +1276,8 @@ namespace Retro_Engine
         yScale = ySize * yScale >> 11;
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1285,8 +1285,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xScale);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xScale) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1294,8 +1294,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + yScale);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + yScale) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1337,8 +1337,8 @@ namespace Retro_Engine
         yScale = ySize * yScale >> 5;
         if (GraphicsSystem.gfxSurface[surfaceNum].texStartX <= -1 || GraphicsSystem.gfxVertexSize >= (ushort) 4096 /*0x1000*/)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1346,8 +1346,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + yBegin) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + xScale);
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) yPos;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + xScale) << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1355,8 +1355,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + xBegin + xSize) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].texCoord.y;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) xPos;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + yScale);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos << 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + yScale) << 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1404,8 +1404,8 @@ namespace Retro_Engine
         {
           int num3 = -xPivot;
           int num4 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num3 * num2 + num4 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num4 * num2 - num3 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num3 * num2 + num4 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num4 * num2 - num3 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1415,8 +1415,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num5 = xSize - xPivot;
           int num6 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num5 * num2 + num6 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num6 * num2 - num5 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num5 * num2 + num6 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num6 * num2 - num5 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1426,8 +1426,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num7 = -xPivot;
           int num8 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num7 * num2 + num8 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num8 * num2 - num7 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num7 * num2 + num8 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num8 * num2 - num7 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1437,8 +1437,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num9 = xSize - xPivot;
           int num10 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num9 * num2 + num10 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num10 * num2 - num9 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num9 * num2 + num10 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num10 * num2 - num9 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1452,8 +1452,8 @@ namespace Retro_Engine
         {
           int num11 = xPivot;
           int num12 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num11 * num2 + num12 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num12 * num2 - num11 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num11 * num2 + num12 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num12 * num2 - num11 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1463,8 +1463,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num13 = xPivot - xSize;
           int num14 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num13 * num2 + num14 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num14 * num2 - num13 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num13 * num2 + num14 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num14 * num2 - num13 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1474,8 +1474,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num15 = xPivot;
           int num16 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num15 * num2 + num16 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num16 * num2 - num15 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num15 * num2 + num16 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num16 * num2 - num15 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1485,8 +1485,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num17 = xPivot - xSize;
           int num18 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num17 * num2 + num18 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num18 * num2 - num17 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num17 * num2 + num18 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num18 * num2 - num17 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1527,8 +1527,8 @@ namespace Retro_Engine
         {
           int num3 = -xPivot;
           int num4 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num3 * num2 + num4 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num4 * num2 - num3 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num3 * num2 + num4 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num4 * num2 - num3 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1538,8 +1538,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num5 = xSize - xPivot;
           int num6 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num5 * num2 + num6 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num6 * num2 - num5 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num5 * num2 + num6 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num6 * num2 - num5 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1549,8 +1549,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num7 = -xPivot;
           int num8 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num7 * num2 + num8 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num8 * num2 - num7 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num7 * num2 + num8 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num8 * num2 - num7 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1560,8 +1560,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num9 = xSize - xPivot;
           int num10 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num9 * num2 + num10 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num10 * num2 - num9 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num9 * num2 + num10 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num10 * num2 - num9 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1575,8 +1575,8 @@ namespace Retro_Engine
         {
           int num11 = xPivot;
           int num12 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num11 * num2 + num12 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num12 * num2 - num11 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num11 * num2 + num12 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num12 * num2 - num11 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1586,8 +1586,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num13 = xPivot - xSize;
           int num14 = -yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num13 * num2 + num14 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num14 * num2 - num13 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num13 * num2 + num14 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num14 * num2 - num13 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1597,8 +1597,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num15 = xPivot;
           int num16 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num15 * num2 + num16 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num16 * num2 - num15 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num15 * num2 + num16 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num16 * num2 - num15 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1608,8 +1608,8 @@ namespace Retro_Engine
           ++GraphicsSystem.gfxVertexSize;
           int num17 = xPivot - xSize;
           int num18 = ySize - yPivot;
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (xPos + (num17 * num2 + num18 * num1 >> 5));
-          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (yPos + (num18 * num2 - num17 * num1 >> 5));
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) ((xPos + (num17 * num2 + num18 * num1 >> 5))<< 4);
+          GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) ((yPos + (num18 * num2 - num17 * num1 >> 5))<< 4);
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
           GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1625,8 +1625,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[0].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[0].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[0].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[0].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = (byte) (rgbVal >> 16 /*0x10*/ & (int) byte.MaxValue);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = (byte) (rgbVal >> 8 & (int) byte.MaxValue);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = (byte) (rgbVal & (int) byte.MaxValue);
@@ -1635,8 +1635,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.01f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.01f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[1].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[1].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[1].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[1].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.b;
@@ -1644,8 +1644,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.01f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.01f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[2].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[2].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[2].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[2].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.b;
@@ -1653,8 +1653,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = 0.01f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = 0.01f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[3].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[3].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[3].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[3].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.r;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.g;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize - 1].color.b;
@@ -1669,8 +1669,8 @@ namespace Retro_Engine
       {
         if (GraphicsSystem.gfxVertexSize >= (ushort) 8192 /*0x2000*/)
           return;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[0].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[0].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[0].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[0].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1678,8 +1678,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + face.vertex[0].u) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + face.vertex[0].v) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[1].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[1].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[1].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[1].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1687,8 +1687,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + face.vertex[1].u) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + face.vertex[1].v) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[2].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[2].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[2].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[2].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;
@@ -1696,8 +1696,8 @@ namespace Retro_Engine
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.x = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartX + face.vertex[2].u) * 0.0009765625f;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].texCoord.y = (float) (GraphicsSystem.gfxSurface[surfaceNum].texStartY + face.vertex[2].v) * 0.0009765625f;
         ++GraphicsSystem.gfxVertexSize;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) face.vertex[3].x;
-        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) face.vertex[3].y;
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.x = (float) (face.vertex[3].x<< 4);
+        GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].position.y = (float) (face.vertex[3].y<< 4);
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.r = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.g = byte.MaxValue;
         GraphicsSystem.gfxPolyList[(int) GraphicsSystem.gfxVertexSize].color.b = byte.MaxValue;

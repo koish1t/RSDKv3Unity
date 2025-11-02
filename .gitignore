@@ -8,3 +8,5 @@ Library/
 /Assets/StreamingAssets
 ffmpeg.exe
 /Extracted_XAP
+.vscode/
+*.slnx

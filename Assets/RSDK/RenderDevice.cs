@@ -32,7 +32,7 @@ namespace Retro_Engine
         }
         GraphicsSystem.InitializeRenderTexture();
         
-        renderMaterial = new Material(Shader.Find("Unlit/Transparent"));
+        renderMaterial = new Material(Shader.Find("Custom/RSDK_RT"));
         
         CreateRenderMesh();
       }
