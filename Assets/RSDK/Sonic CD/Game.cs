@@ -294,7 +294,7 @@ namespace Sonic_CD
         GlobalAppDefinitions.CalculateTrigAngles();
         
         RenderDevice.InitRenderDevice();
-        RenderDevice.SetScreenDimensions(400, 240);
+        RenderDevice.SetScreenDimensions(6400, 3840);
         
         EngineCallbacks.StartupRetroEngine();
         EngineCallbacks.gameRef = this;
