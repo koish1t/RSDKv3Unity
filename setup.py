@@ -1,10 +1,14 @@
 import os
+import sys
 import zipfile
 import subprocess
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-FFMPEG_PATH = "ffmpeg.exe"
+if sys.platform == "win32":
+    FFMPEG_PATH = "ffmpeg.exe"
+else:
+    FFMPEG_PATH = "ffmpeg"
 MAX_THREADS = min(8, os.cpu_count() or 4)
 
 def check_for_soniccd_files():
